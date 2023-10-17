@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-const reactionSchema = require('./Reaction');
 
 // Schema to create thought model
 const thoughtSchema = new Schema(
@@ -22,7 +21,6 @@ const thoughtSchema = new Schema(
                 ref: 'reactionSchema',
             }
         ],
-        reaction: [reactionSchema],
     },
     {
         // Mongoose supports two Schema options to transform Objects after querying MongoDb: toJSON and toObject.
@@ -38,7 +36,7 @@ reactionCount
     .virtual('reactions')
     // Getter
     .get(function () {
-        return this.reaction.length;
+        return this.reactions.length;
     });
 
 // Initialize our Thought model
